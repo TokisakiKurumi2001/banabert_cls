@@ -11,8 +11,8 @@ if __name__ == "__main__":
 
     # train model
     trainer = pl.Trainer(
-        max_epochs=25, logger=wandb_logger, devices=2, accelerator="gpu", strategy="ddp",
-        callbacks=[EarlyStopping(monitor="valid/acc_epoch", min_delta=0.00, patience=2, verbose=False, mode="max")]
+        max_epochs=20, logger=wandb_logger, devices=2, accelerator="gpu", strategy="ddp",
+        callbacks=[EarlyStopping(monitor="valid/acc_epoch", min_delta=0.00, patience=5, verbose=False, mode="max")]
     )
     trainer.fit(model=lit_banabert_cls, train_dataloaders=train_dataloader, val_dataloaders=valid_dataloader)
-    trainer.test(dataloaders=test_dataloader)
+    trainer.test(model=lit_banabert_cls, dataloaders=test_dataloader)

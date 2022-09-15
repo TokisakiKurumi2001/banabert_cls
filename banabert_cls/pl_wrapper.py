@@ -46,8 +46,9 @@ class LitBanaBERForSeqClassifier(pl.LightningModule):
         logits = self.banabert_cls(batch)
         preds = torch.argmax(logits, dim=-1)
         self.test_acc.update(preds, labels)
+        return None
         
-    def test_epoch_end(self, outputs):
+    def test_step_end(self, outputs):
         self.log('test/acc_epoch', self.test_acc.compute(), on_epoch=True, sync_dist=True)
         self.test_acc.reset()
 

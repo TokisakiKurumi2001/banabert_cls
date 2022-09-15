@@ -6,7 +6,7 @@ import torch
 def collate_fn(examples):
     if isinstance(examples, (list, tuple)) and isinstance(examples[0], Mapping):
         encoded_inputs = {key: [example[key] for example in examples] for key in examples[0].keys()}
-    input = encoded_inputs['bana']
+    input = encoded_inputs['ba']
     tok = tokenizer.tokenize(input, padding='max_length', truncation=True, max_length=70, return_tensors='pt')
     
     labels = encoded_inputs['label']
