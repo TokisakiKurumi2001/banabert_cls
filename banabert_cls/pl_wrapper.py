@@ -5,9 +5,9 @@ from banabert_cls import BanaBERTForSeqClassifier
 import torchmetrics
 
 class LitBanaBERForSeqClassifier(pl.LightningModule):
-    def __init__(self, num_classes: int):
+    def __init__(self, num_classes: int, model_ck: str):
         super(LitBanaBERForSeqClassifier, self).__init__()
-        self.banabert_cls = BanaBERTForSeqClassifier(num_classes)
+        self.banabert_cls = BanaBERTForSeqClassifier(num_classes, model_ck)
         self.num_classes = num_classes
         self.main_loss = nn.CrossEntropyLoss()
         self.train_acc = torchmetrics.Accuracy()

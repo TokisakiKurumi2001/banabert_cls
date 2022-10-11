@@ -2,11 +2,11 @@ import torch
 import torch.nn as nn
 from transformers import BertModel
 
-class BanabertClassificationHead(nn.Module):
+class BanaBERTClassificationHead(nn.Module):
     """Head for sentence-level classification tasks."""
 
     def __init__(self, config, num_classes):
-        super(BanabertClassificationHead, self).__init__()
+        super(BanaBERTClassificationHead, self).__init__()
         self.dense = nn.Linear(config.hidden_size, config.hidden_size)
         classifier_dropout = (
             config.classifier_dropout if config.classifier_dropout is not None else config.hidden_dropout_prob
@@ -24,10 +24,10 @@ class BanabertClassificationHead(nn.Module):
         return x
 
 class BanaBERTForSeqClassifier(nn.Module):
-    def __init__(self, num_classes):
+    def __init__(self, num_classes: int, model_ck: str):
         super(BanaBERTForSeqClassifier, self).__init__()
-        self.banabert = BertModel.from_pretrained("banabert")
-        self.classifier = BanabertClassificationHead(self.banabert.config, num_classes)
+        self.banabert = BertModel.from_pretrained(model_ck)
+        self.classifier = BanaBERTClassificationHead(self.banabert.config, num_classes)
     
     def forward(self, inputs):
         outputs = self.banabert(**inputs)

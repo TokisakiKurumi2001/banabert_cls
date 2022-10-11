@@ -7,7 +7,9 @@ if __name__ == "__main__":
     wandb_logger = WandbLogger(project="proj_banabert_cls")
 
     # model
-    lit_banabert_cls = LitBanaBERForSeqClassifier(num_classes=5)
+    model_ck = "banabert_model_ot_cl/version1"
+    num_classes = 5
+    lit_banabert_cls = LitBanaBERForSeqClassifier(num_classes, model_ck)
 
     # train model
     trainer = pl.Trainer(
