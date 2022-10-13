@@ -108,3 +108,7 @@ Model: `bert-base-multilingual-cased`
   "vocab_size": 119547
 }
 ```
+
+## Major Change in version 0.1.2
+
+Take sum/mean of the last N hidden state of the model

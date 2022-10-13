@@ -10,7 +10,7 @@ if __name__ == "__main__":
     model_ck = "banabert_model/ot_cl"
     num_classes = 5
     layers_use_from_last = 4
-    method_for_layers = 'mean'
+    method_for_layers = 'sum'
     lit_banabert_cls = LitBanaBERForSeqClassifier(
         num_classes, model_ck, layers_use_from_last, method_for_layers
     )
