@@ -1,13 +1,14 @@
 import torch
 import torch.nn as nn
 import pytorch_lightning as pl
+from typing import List
 from banabert_cls import BanaBERTForSeqClassifier
 import torchmetrics
 
 class LitBanaBERForSeqClassifier(pl.LightningModule):
-    def __init__(self, num_classes: int, model_ck: str):
+    def __init__(self, num_classes: int, model_ck: str, layers_use_from_last: int, method_for_layers: str):
         super(LitBanaBERForSeqClassifier, self).__init__()
-        self.banabert_cls = BanaBERTForSeqClassifier(num_classes, model_ck)
+        self.banabert_cls = BanaBERTForSeqClassifier(num_classes, model_ck, layers_use_from_last, method_for_layers)
         self.num_classes = num_classes
         self.main_loss = nn.CrossEntropyLoss()
         self.train_acc = torchmetrics.Accuracy()
